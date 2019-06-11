@@ -1,0 +1,42 @@
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div *ngIf="!isLoading" class="container-fluid">
+    <button class="export-json" type="button" (click)="exportJson()" mdbBtn color="primary" mdbWavesEffect>EXPORT JSON</button>
+  <div class="row main">
+    <div class="col-2 menu-left d-flex flex-column align-items-center">
+<app-menu-left style="width: 100%; height: 100%;" (draw)="drop($event)"></app-menu-left>
+  </div>
+    <div class="col-10 content-body">
+    <div *ngFor="let item of menuList1" style="position:absolute" 
+    class="{{item.class}}" id="{{item.id}}">
+        <div class="md-form form-sm" id ="{{item.idInput}}">
+            <input mdbInput type="text" id="{{item.idText}}" class="form-control form-control-sm" placeholder="input text">
+          </div>
+            <mdb-icon fas icon="plus" class="draw-arrow" (click)="dropImageBottom(item)"></mdb-icon>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0px;top:0px" width="100%" [attr.height]="heightSVG">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="70" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+        </defs>
+      <g fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)">
+          <path *ngFor="let item of listArrow" id="{{ item }}"/>
+      </g>
+    </svg>
+
+
+    </div>
+  </div>
+
+  <footer class="page-footer font-small deep-blue-gradient">
+
+    <div class="text-center py-3">© 2019 Copyright:
+      <a> Dragdrop-Team</a>
+    </div>
+  
+  </footer>
+</div>
+
